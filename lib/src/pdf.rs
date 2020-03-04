@@ -28,12 +28,12 @@ pub fn save_to_pdf(is_testnet: bool, addresses: &str, filename: &str) -> Result<
 
     let mut current_layer = doc.get_page(page1).get_layer(layer1);
     
-    let total_pages      = f64::ceil(keys.len() as f64 / 2.0);   // 2 per page
+    let total_pages      = f64::ceil(keys.len() as f64 / 1.0);   // 1 per page
     let mut current_page = 1; 
 
     for kv in keys.members() {
         // Add next page when moving to the next position.
-        if pos >= 2 {
+        if pos >= 1 {
             pos = 0;
             current_page = current_page + 1;
 
