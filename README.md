@@ -1,22 +1,23 @@
-# zecpaperwallet
-zecpaperwallet is a Zcash Sapling paper wallet generator that can run completely offline. You can run it on an air-gapped computer to generate your shielded z-addresses, which will allow you to keep your keys completely offline. 
+# hushpaperwallet
+hushpaperwallet is a paper wallet generator that can run completely offline.  
+You can run it on an air-gapped computer to generate your shielded z-addresses, which will allow you to keep your keys completely offline. 
 
 *Example:*
-![Paper Wallet](docs/paperwallet.png?raw=true)
+![screenshot](hushpaperwallet.png?raw=true)
 
 # Download
-zecpaperwallet is available as pre-built binaries from our [release page](https://github.com/adityapk00/zecpaperwallet/releases). Download the zip file for your platform, extract it and run the `./zecpaperwallet` binary. 
+hushpaperwallet is available as pre-built binaries from our [release page](https://github.com/MyHush/hushpaperwallet/releases). Download the zip file for your platform, extract it and run the `./hushpaperwallet` binary. 
 
 # Generating wallets
-To generate a Zcash paper wallet, simply run `./zecpaperwallet`
+To generate a Hush paper wallet, simply run `./hushpaperwallet`
 
 You'll be asked to type some random characters that will add entropy to the random number generator. Run with `--help` to see all options
 
 ## Saving as PDFs
-To generate a Zcash paper wallet and save it as a PDF, run
-`./zecpaperwallet -z 3 --format pdf zecpaper-output.pdf`
+To generate a Hush paper wallet and save it as a PDF, run
+`./hushpaperwallet -z 3 --format pdf hushpaper-output.pdf`
 
-This will generate 3 shielded z-addresses and their corresponding private keys, and save them in a PDF file called `zecpaper-output.pdf`
+This will generate 3 shielded z-addresses and their corresponding private keys, and save them in a PDF file called `hushpaper-output.pdf`
 
 ## Vanity Addresses
 You can generate a "vanity address" (that is, an address starting with a given prefix) by specifying a `--vanity` argument with the prefix you want. 
@@ -24,14 +25,14 @@ You can generate a "vanity address" (that is, an address starting with a given p
 Note that generating vanity addresses with a prefix longer than 4-5 characters is computationally expensive. You can run it on multiple CPUs on your computer by specifying the `--threads` option. 
 
 # Compiling from Source
-zecpaperwallet is built with rust. To compile from source, you [install Rust](https://www.rust-lang.org/tools/install). Basically, you need to:
+hushpaperwallet is built with rust. To compile from source, you [install Rust](https://www.rust-lang.org/tools/install). Basically, you need to:
 ```
 curl https://sh.rustup.rs -sSf | sh
 ```
-Checkout the zecpaperwallet repository and build the CLI
+Checkout the hushpaperwallet repository and build the CLI
 ```
-git clone https://github.com/adityapk00/zecpaperwallet.git
-cd zecpaperwallet/cli
+git clone https://github.com/MyHush/hushpaperwallet.git
+cd hushpaperwallet/cli
 cargo build --release
 ```
 
@@ -39,17 +40,17 @@ The binary is available in the `target/release` folder.
 
 ## Ensuring Security
 When generating paper wallets that will store large amounts of crypto, please take special care to ensure the keys are generated and kept completely offline.
-1. `zecpaperwallet` supports ARMv8 (Raspberry Pi 3+). You can put one in a Faraday cage along with a printer, and print out the PDFs securely.
-2. Please ensure you supply random entropy when you run `zecpaperwallet`. Your entropy is mixed in with system-provided entropy to generate keys
+1. `hushpaperwallet` supports ARMv8 (Raspberry Pi 3+). You can put one in a Faraday cage along with a printer, and print out the PDFs securely.
+2. Please ensure you supply random entropy when you run `hushpaperwallet`. Your entropy is mixed in with system-provided entropy to generate keys
 3. If you can, run with `unshare`, which will disable all network interfaces to a process, providing you with an additional layer of safety. (See next section)
 4. After you've generated the keys, you can tear off the Address potion of the wallet and take it to your online computer/phone to send the address funds. Please always keep the private key offline. 
 5. When you're ready to spend the cold storage keys, import the private key into a full node, then don't re-use the key again. 
 
 ### Run without network
-If you are running a newish version of Linux, you can be doubly sure that the process is not contacting the network by running zecpaperwallet without the network namespace.
+If you are running a newish version of Linux, you can be doubly sure that the process is not contacting the network by running hushpaperwallet without the network namespace.
 
 ```
-sudo unshare -n ./target/release/zecpaperwallet
+sudo unshare -n ./target/release/hushpaperwallet
 ```
 `unshare -n` runs the process without a network interface which means you can be sure that your data is not being sent across the network. 
 
@@ -57,11 +58,11 @@ sudo unshare -n ./target/release/zecpaperwallet
 ## Help options
 ```
 USAGE:
-    zecpaperwallet [FLAGS] [OPTIONS] [output]
+    hushpaperwallet [FLAGS] [OPTIONS] [output]
 
 FLAGS:
     -h, --help       Prints help information
-    -n, --nohd       Don't reuse HD keys. Normally, zecpaperwallet will use the same HD key to derive multiple
+    -n, --nohd       Don't reuse HD keys. Normally, hushpaperwallet will use the same HD key to derive multiple
                      addresses. This flag will use a new seed for each address
         --testnet    Generate Testnet addresses
     -V, --version    Prints version information
