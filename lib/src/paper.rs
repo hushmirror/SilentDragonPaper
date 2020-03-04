@@ -264,7 +264,7 @@ pub fn generate_vanity_wallet(is_testnet: bool, num_threads: u32, prefix: String
     let mut processed: u64   = 0;
     let now = SystemTime::now();
 
-    let mut wallet: String;
+    let wallet: String;
 
     // Calculate the estimated time
     let expected_combinations = (32 as f64).powf(prefix.len() as f64);
@@ -395,8 +395,8 @@ fn gen_addresses_with_seed_as_json<F>(is_testnet: bool, zcount: u32, tcount: u32
 
 /// Generate a t address
 fn get_taddress(is_testnet: bool, rng: &mut ChaChaRng) -> (String, String) {
-    use secp256k1;
-    use ripemd160::{Ripemd160, Digest};
+//    use secp256k1;
+    use ripemd160::{Ripemd160};
 
     let mut sk_bytes: [u8; 32] = [0;32];
 
