@@ -1,11 +1,14 @@
 [package]
-name = "zecpaperwallet"
+name = "hushpaperwallet"
 version = "0.1.0"
-authors = ["ZecWallet"]
+authors = [
+	"ZecWallet",
+    "The Hush developers"
+]
 edition = "2018"
     
 [dependencies]
 clap = "2.33.0"
-zecpaperlib = { path = "../lib" }
+hushpaperlib = { path = "../lib" }
 json = "0.11.14"
-printpdf = "0.2.8"
+printpdf = "0.3.2"

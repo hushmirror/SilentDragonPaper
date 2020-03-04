@@ -16,7 +16,7 @@ use printpdf::*;
  * Save the list of wallets (address + private keys) to the given PDF file name.
  */
 pub fn save_to_pdf(is_testnet: bool, addresses: &str, filename: &str) -> Result<(), String> {
-    let (doc, page1, layer1) = PdfDocument::new("Zec Sapling Paper Wallet", Mm(210.0), Mm(297.0), "Layer 1");
+    let (doc, page1, layer1) = PdfDocument::new("Hush Paper Wallet", Mm(210.0), Mm(297.0), "Layer 1");
 
     let font  = doc.add_builtin_font(BuiltinFont::Courier).unwrap();
     let font_bold = doc.add_builtin_font(BuiltinFont::CourierBold).unwrap();
@@ -143,7 +143,7 @@ fn add_address_to_page(current_layer: &PdfLayerReference, font: &IndirectFontRef
 
     //         page_height  top_margin  vertical_padding  position               
     let ypos = 297.0        - 5.0       - 35.0            - (140.0 * pos as f64);
-    let title = if is_taddr {"T Address"} else {"ZEC Address (Sapling)"};
+    let title = if is_taddr {"T Address"} else {"HUSH Address"};
 
     add_address_at(current_layer, font, font_bold, title, address, &scaledimg, finalsize, ypos);
 }
@@ -198,7 +198,7 @@ fn add_pk_to_page(current_layer: &PdfLayerReference, font: &IndirectFontRef, fon
     }
 
     // Add the address a second time below the private key
-    let title = if is_taddr {"T Address"} else {"ZEC Address (Sapling)"};
+    let title = if is_taddr {"T Address"} else {"HUSH Address"};
     current_layer.use_text(title, 12, Mm(10.0), Mm(ypos-10.0), &font_bold);    
     let strs = split_to_max(&address, 39, 39);  // No spaces, so user can copy the address
     for i in 0..strs.len() {

@@ -1,7 +1,10 @@
 [package]
-name = "zecpaperlib"
+name = "hushpaperlib"
 version = "0.1.0"
-authors = ["ZecWallet"]
+authors = [
+	"ZecWallet",
+    "The Hush developers"
+]
 edition = "2018"
 
 [features]
@@ -14,7 +17,7 @@ bech32 = "0.6"
 zcash_primitives = {  git = "https://github.com/zcash/librustzcash", rev = "5a48d179b8434a0318e7e19dda506e245a904092" }
 json = "0.11.14"    
 qrcode = { version = "0.8", default-features = false }
-printpdf = { version = "0.2.8", optional = true }
+printpdf = { version = "0.3.2", optional = true }
 libsecp256k1 = "0.2.2"
 ripemd160 = "0.8.0"
 sha2 = "0.8.0"

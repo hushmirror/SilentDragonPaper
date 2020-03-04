@@ -8,7 +8,7 @@
 #include "ui_wallet.h"
 #include "ui_about.h"
 
-#include "zecpaperrust.h"
+#include "hushpaperrust.h"
 
 void SaveRestore(QDialog* d) {
     d->restoreGeometry(QSettings().value(d->objectName() % "geometry").toByteArray());
@@ -172,7 +172,7 @@ MainWindow::MainWindow(QWidget *parent) :
 
     // Help site
     QObject::connect(ui->actionHelp_site, &QAction::triggered, [=]() {
-        QDesktopServices::openUrl(QUrl("https://docs.zecwallet.co/paper")); 
+        QDesktopServices::openUrl(QUrl("https://docs.hushwallet.co/paper")); 
     });
 
     // About button
@@ -180,7 +180,7 @@ MainWindow::MainWindow(QWidget *parent) :
         QDialog ad(this);
         Ui_AboutDialog d;
         d.setupUi(&ad);
-        d.lblVersion->setText(QString("zecpaperwallet ") + APP_VERSION + "(" + APP_BUILD_DATE + ")");
+        d.lblVersion->setText(QString("hushpaperwallet ") + APP_VERSION + "(" + APP_BUILD_DATE + ")");
         SaveRestore(&ad);
 
         ad.exec();

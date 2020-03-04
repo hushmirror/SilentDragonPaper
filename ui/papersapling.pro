@@ -8,7 +8,7 @@ QT       += core gui
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
-TARGET = zecpaperwalletui
+TARGET = hushpaperwalletui
 TEMPLATE = app
 
 MOC_DIR = bin
@@ -50,7 +50,7 @@ HEADERS += \
         src/qrcode/QrCode.hpp \
         src/qrcode/QrSegment.hpp \
         src/version.h \
-        qtlib/src/zecpaperrust.h 
+        qtlib/src/hushpaperrust.h 
 
 
 FORMS += \
@@ -69,8 +69,8 @@ mac: LIBS+= -Wl,-bind_at_load
 win32: RC_ICONS = res/icon.ico
 ICON = res/logo.icns
 
-unix:        librust.target   = $$PWD/qtlib/target/release/libzecpaperrust.a
-else:win32:  librust.target   = $$PWD/qtlib/target/x86_64-pc-windows-gnu/release/zecpaperrust.lib
+unix:        librust.target   = $$PWD/qtlib/target/release/libhushpaperrust.a
+else:win32:  librust.target   = $$PWD/qtlib/target/x86_64-pc-windows-gnu/release/hushpaperrust.lib
 
 unix:        librust.commands = $(MAKE) -C $$PWD/qtlib 
 else:win32:  librust.commands = $(MAKE) -C $$PWD/qtlib winrelease
@@ -81,7 +81,7 @@ distclean.depends += librustclean
 QMAKE_INFO_PLIST = res/Info.plist
 
 QMAKE_EXTRA_TARGETS += librust librustclean distclean
-QMAKE_CLEAN += $$PWD/qtlib/target/release/libzecpaperrust.a
+QMAKE_CLEAN += $$PWD/qtlib/target/release/libhushpaperrust.a
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
@@ -89,9 +89,9 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
 
 
-win32: LIBS += -L$$PWD/qtlib/target/x86_64-pc-windows-gnu/release -lzecpaperrust
-else:macx: LIBS += -L$$PWD/qtlib/target/release -lzecpaperrust -framework Security -framework Foundation
-else:unix: LIBS += -L$$PWD/qtlib/target/release -lzecpaperrust -ldl
+win32: LIBS += -L$$PWD/qtlib/target/x86_64-pc-windows-gnu/release -lhushpaperrust
+else:macx: LIBS += -L$$PWD/qtlib/target/release -lhushpaperrust -framework Security -framework Foundation
+else:unix: LIBS += -L$$PWD/qtlib/target/release -lhushpaperrust -ldl
 
-win32: PRE_TARGETDEPS += $$PWD/qtlib/target/x86_64-pc-windows-gnu/release/zecpaperrust.lib
-else:unix::PRE_TARGETDEPS += $$PWD/qtlib/target/release/libzecpaperrust.a
+win32: PRE_TARGETDEPS += $$PWD/qtlib/target/x86_64-pc-windows-gnu/release/hushpaperrust.lib
+else:unix::PRE_TARGETDEPS += $$PWD/qtlib/target/release/libhushpaperrust.a

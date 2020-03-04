@@ -2,7 +2,7 @@ global.jQuery = require('jquery');
 require('bootstrap');
 var QRCode = require('qrcode')
 
-import * as wasm from "zecpaperwallet";
+import * as wasm from "hushpaperwallet";
 
 var address_number = 0;
 function add_section(wallet_item) {
