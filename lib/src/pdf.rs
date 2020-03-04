@@ -57,7 +57,15 @@ pub fn save_to_pdf(is_testnet: bool, addresses: &str, filename: &str) -> Result<
         add_pk_to_page(&current_layer, &font, &font_bold, pk, address, is_taddr, seed, hdpath, pos);
  
         let line1 = Line {
-            points: vec![(Point::new(Mm(5.0), Mm(160.0)), false), (Point::new(Mm(205.0), Mm(160.0)), false)],
+            points: vec![(Point::new(Mm(5.0), Mm(98.0)), false), (Point::new(Mm(205.0), Mm(98.0)), false)],
+            is_closed: true,
+            has_fill: false,
+            has_stroke: true,
+            is_clipping_path: false,
+        };
+
+	    let line2 = Line {
+            points: vec![(Point::new(Mm(5.0), Mm(198.0)), false), (Point::new(Mm(205.0), Mm(198.0)), false)],
             is_closed: true,
             has_fill: false,
             has_stroke: true,
@@ -69,8 +77,13 @@ pub fn save_to_pdf(is_testnet: bool, addresses: &str, filename: &str) -> Result<
         current_layer.set_outline_color(outline_color);
         current_layer.set_outline_thickness(2.0);
 
-        // Draw first line
+        // Set title
+        current_layer.use_text("Speak and Transact Freely", 32, Mm(19.0), Mm(277.0), &font_bold);
+        current_layer.use_text("Private Cryptocurrency and Messenger on Zero Knowledge Proof Encryption", 13, Mm(7.0), Mm(266.0), &font_bold);
+
+        // Draw lines
         current_layer.add_shape(line1);
+        current_layer.add_shape(line2);
 
         // Add footer of page, only once for each pair of addresses
         if pos == 0 {
@@ -142,7 +155,7 @@ fn add_address_to_page(current_layer: &PdfLayerReference, font: &IndirectFontRef
     let (scaledimg, finalsize) = qrcode_scaled(address, if is_taddr {13} else {10});
 
     //         page_height  top_margin  vertical_padding  position               
-    let ypos = 297.0        - 5.0       - 35.0            - (140.0 * pos as f64);
+    let ypos = 297.0        - 5.0       - 77.0            - (140.0 * pos as f64);
     let title = if is_taddr {"T Address"} else {"HUSH Address"};
 
     add_address_at(current_layer, font, font_bold, title, address, &scaledimg, finalsize, ypos);
@@ -150,11 +163,11 @@ fn add_address_to_page(current_layer: &PdfLayerReference, font: &IndirectFontRef
 
 fn add_address_at(current_layer: &PdfLayerReference, font: &IndirectFontRef, font_bold: &IndirectFontRef, title: &str, address: &str, qrcode: &Vec<u8>, finalsize: usize, ypos: f64) {
     add_qrcode_image_to_page(current_layer, qrcode, finalsize, Mm(10.0), Mm(ypos));
-    current_layer.use_text(title, 14, Mm(55.0), Mm(ypos+27.5), &font_bold);
+    current_layer.use_text(title, 14, Mm(55.0), Mm(ypos+22.5), &font_bold);
     
     let strs = split_to_max(&address, 39, 39);  // No spaces, so user can copy the address
     for i in 0..strs.len() {
-        current_layer.use_text(strs[i].clone(), 12, Mm(55.0), Mm(ypos+20.0-((i*5) as f64)), &font);
+        current_layer.use_text(strs[i].clone(), 12, Mm(55.0), Mm(ypos+15.0-((i*5) as f64)), &font);
     }
 }
 
@@ -163,30 +176,8 @@ fn add_address_at(current_layer: &PdfLayerReference, font: &IndirectFontRef, fon
  */
 fn add_pk_to_page(current_layer: &PdfLayerReference, font: &IndirectFontRef, font_bold: &IndirectFontRef, pk: &str, address: &str, is_taddr: bool, seed: &str, path: &str, pos: u32) {
     //         page_height  top_margin  vertical_padding  position               
-    let ypos = 297.0        - 5.0       - 90.0           - (140.0 * pos as f64);
+    let ypos = 297.0        - 5.0       - 242.0           - (140.0 * pos as f64);
     
-    let line1 = Line {
-            points: vec![(Point::new(Mm(5.0), Mm(ypos + 50.0)), false), (Point::new(Mm(205.0), Mm(ypos + 50.0)), false)],
-            is_closed: true,
-            has_fill: false,
-            has_stroke: true,
-            is_clipping_path: false,
-        };
-
-    let outline_color = printpdf::Color::Rgb(Rgb::new(0.0, 0.0, 0.0, None));
-
-    current_layer.set_outline_color(outline_color);
-    let mut dash_pattern = LineDashPattern::default();
-    dash_pattern.dash_1 = Some(5);
-    current_layer.set_line_dash_pattern(dash_pattern);
-    current_layer.set_outline_thickness(1.0);
-
-    // Draw first line
-    current_layer.add_shape(line1);
-
-    // Reset the dashed line pattern
-    current_layer.set_line_dash_pattern(LineDashPattern::default());
-
     let (scaledimg, finalsize) = qrcode_scaled(pk, if is_taddr {20} else {10});
 
     add_qrcode_image_to_page(current_layer, &scaledimg, finalsize, Mm(145.0), Mm(ypos-17.5));
