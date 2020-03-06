@@ -15,7 +15,7 @@ use printpdf::*;
 /**
  * Save the list of wallets (address + private keys) to the given PDF file name.
  */
-pub fn save_to_pdf(is_testnet: bool, addresses: &str, filename: &str) -> Result<(), String> {
+pub fn save_to_pdf(addresses: &str, filename: &str) -> Result<(), String> {
     let (doc, page1, layer1) = PdfDocument::new("Hush Paper Wallet", Mm(210.0), Mm(297.0), "Layer 1");
 
     let font  = doc.add_builtin_font(BuiltinFont::Courier).unwrap();
@@ -44,7 +44,7 @@ pub fn save_to_pdf(is_testnet: bool, addresses: &str, filename: &str) -> Result<
 
         let address  = kv["address"].as_str().unwrap();
         let pk       = kv["private_key"].as_str().unwrap();
-        let is_taddr = !address.starts_with(&params(is_testnet).zaddress_prefix);
+        let is_taddr = !address.starts_with(&params().zaddress_prefix);
 
         let (seed, hdpath) = if kv["type"].as_str().unwrap() == "zaddr" && kv.contains("seed") {
             (kv["seed"]["HDSeed"].as_str().unwrap(), kv["seed"]["path"].as_str().unwrap())

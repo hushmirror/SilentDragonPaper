@@ -13,9 +13,6 @@ fn main() {
     let matches = App::new("hushpaperwaller")
        .version(version::version())
        .about("A command line Hush paper wallet generator")
-       .arg(Arg::with_name("testnet")
-                .long("testnet")
-                .help("Generate Testnet addresses"))
         .arg(Arg::with_name("format")
                 .short("f")
                 .long("format")
@@ -69,8 +66,6 @@ fn main() {
                 }))
        .get_matches();  
 
-    let is_testnet: bool = matches.is_present("testnet");
-    
     let nohd: bool    = matches.is_present("nohd");
 
     // Get the filename and output format
@@ -114,7 +109,7 @@ fn main() {
 
         let prefix = matches.value_of("vanity_prefix").unwrap().to_string();
         println!("Generating address starting with \"{}\"", prefix);
-        let addresses = match generate_vanity_wallet(is_testnet, num_threads, prefix) {
+        let addresses = match generate_vanity_wallet(num_threads, prefix) {
             Ok(w) => w,
             Err(e) => {
                 eprintln!("{}", e);
@@ -143,7 +138,7 @@ fn main() {
 
         print!("Generating {} Sapling addresses and {} Transparent addresses...", z_addresses, t_addresses);
         io::stdout().flush().ok();
-        let addresses = generate_wallet(is_testnet, nohd, z_addresses, t_addresses, &entropy); 
+        let addresses = generate_wallet(nohd, z_addresses, t_addresses, &entropy); 
         println!("[OK]");
 
         addresses
@@ -161,7 +156,7 @@ fn main() {
         // We already know the output file name was specified
         print!("Writing {:?} as a PDF file...", filename.unwrap());
         io::stdout().flush().ok();
-        match pdf::save_to_pdf(is_testnet, &addresses, filename.unwrap()) {
+        match pdf::save_to_pdf(&addresses, filename.unwrap()) {
             Ok(_)   => { println!("[OK]");},
             Err(e)  => {
                 eprintln!("[ERROR]");
