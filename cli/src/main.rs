@@ -19,7 +19,7 @@ fn main() {
         .arg(Arg::with_name("format")
                 .short("f")
                 .long("format")
-                .help("What format to generate the output in")
+                .help("What format to generate the output in: json or pdf")
                 .takes_value(true)
                 .value_name("FORMAT")
                 .possible_values(&["pdf", "json"])
