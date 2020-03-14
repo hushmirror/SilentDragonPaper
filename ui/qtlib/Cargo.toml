@@ -5,9 +5,9 @@ authors = ["ZecWallet"]
 edition = "2018"
 
 [lib]
-name = "zecpaperrust"
+name = "hushpaperrust"
 crate-type = ["staticlib"]
 
 [dependencies]
 libc = "0.2.58"
-zecpaperlib = { path = "../../lib" }
+hushpaperlib = { path = "../../lib" }

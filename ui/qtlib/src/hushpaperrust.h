@@ -1,5 +1,5 @@
-#ifndef _ZEC_PAPER_RUST_H
-#define _ZEC_PAPER_RUST_H
+#ifndef _HUSH_PAPER_RUST_H
+#define _HUSH_PAPER_RUST_H
 
 #ifdef __cplusplus
 extern "C"{
