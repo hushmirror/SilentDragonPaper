@@ -74,7 +74,6 @@ FLAGS:
     -h, --help       Prints help information
     -n, --nohd       Don't reuse HD keys. Normally, hushpaperwallet will use the same HD key to derive multiple
                      addresses. This flag will use a new seed for each address
-        --testnet    Generate Testnet addresses
     -V, --version    Prints version information
 
 OPTIONS:
@@ -84,7 +83,8 @@ OPTIONS:
     -t, --taddrs <t_addresses>    Numbe rof T addresses to generate [default: 0]
         --threads <threads>       Number of threads to use for the vanity address generator. Set this to the number of
                                   CPUs you have [default: 1]
-        --vanity <vanity>         Generate a vanity address with the given prefix
+        --vanity <vanity>         Generate a vanity address with the given prefix.
+                                  Note that ['b', 'i', 'o', '1'] are not allowed in addresses.
     -z, --zaddrs <z_addresses>    Number of Z addresses (Sapling) to generate [default: 1]
 
 ARGS:

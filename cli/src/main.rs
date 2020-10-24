@@ -37,7 +37,7 @@ fn main() {
                 .help("Provide additional entropy to the random number generator. Any random string, containing 32-64 characters"))
         .arg(Arg::with_name("vanity_prefix")
                 .long("vanity")
-                .help("Generate a vanity address with the given prefix")
+                .help("Generate a vanity address with the given prefix. Note that ['b', 'i', 'o', '1'] are not allowed in addresses.")
                 .takes_value(true))
         .arg(Arg::with_name("threads")
                 .long("threads")
@@ -47,7 +47,7 @@ fn main() {
         .arg(Arg::with_name("t_addresses")
                 .short("t")
                 .long("taddrs")
-                .help("Numbe rof T addresses to generate")
+                .help("Number of t-addresses to generate")
                 .takes_value(true)
                 .default_value("0")
                 .validator(|i:String| match i.parse::<i32>() {
@@ -57,7 +57,7 @@ fn main() {
         .arg(Arg::with_name("z_addresses")
                 .short("z")
                 .long("zaddrs")
-                .help("Number of Z addresses (Sapling) to generate")
+                .help("Number of z-addresses (Sapling) to generate")
                 .takes_value(true)
                 .default_value("1")                
                 .validator(|i:String| match i.parse::<i32>() {
@@ -78,16 +78,6 @@ fn main() {
         return;
     }
 
-    // Get the filename and output format
-    let filename = matches.value_of("output");
-    let format   = matches.value_of("format").unwrap();
-
-    // Writing to PDF requires a filename
-    if format == "pdf" && filename.is_none() {
-        eprintln!("Need an output file name when writing to PDF");
-        return;
-    }
-
     // Number of t addresses to generate
     let t_addresses = matches.value_of("t_addresses").unwrap().parse::<u32>().unwrap();    
 
@@ -96,19 +86,19 @@ fn main() {
 
     let addresses = if !matches.value_of("vanity_prefix").is_none() {
         if z_addresses != 1 {
-            eprintln!("Can only generate 1 zaddress in vanity mode. You specified {}", z_addresses);
+            eprintln!("Can only generate 1 z-address in vanity mode. You specified {}", z_addresses);
             return;
         }
 
         if t_addresses != 0 {
-            eprintln!("Can't generate vanity t-addressses yet");
+            eprintln!("Can't generate vanity t-addresses yet");
             return;
         }
 
         let num_threads = matches.value_of("threads").unwrap().parse::<u32>().unwrap();
 
         let prefix = matches.value_of("vanity_prefix").unwrap().to_string();
-        println!("Generating address starting with \"{}\"", prefix);
+        println!("Generating z-address starting with \"{}\"...", prefix);
         let addresses = match generate_vanity_wallet(num_threads, prefix) {
             Ok(w) => w,
             Err(e) => {
@@ -125,7 +115,8 @@ fn main() {
         // If the user hasn't specified any, read from the stdin
         if matches.value_of("entropy").is_none() {
             // Read from stdin
-            println!("Provide additional entropy for generating random numbers. Type in a string of random characters, press [ENTER] when done");
+            println!("Provide additional entropy for generating random numbers.
+Type in a string of random characters, press [ENTER] when done.");
             let mut buffer = String::new();
             let stdin = io::stdin();
             stdin.lock().read_line(&mut buffer).unwrap();
@@ -136,7 +127,7 @@ fn main() {
             entropy.extend(matches.value_of("entropy").unwrap().as_bytes());
         }
 
-        print!("Generating {} Sapling addresses and {} Transparent addresses...", z_addresses, t_addresses);
+        print!("Generating {} z-addresses and {} t-addresses...", z_addresses, t_addresses);
         io::stdout().flush().ok();
         let addresses = generate_wallet(nohd, z_addresses, t_addresses, &entropy); 
         println!("[OK]");

@@ -1,1 +1,1 @@
-pub fn version() -> &'static str { &"0.1.1" }
+pub fn version() -> &'static str { &"0.1.2" }
