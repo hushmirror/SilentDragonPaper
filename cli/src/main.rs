@@ -78,16 +78,6 @@ fn main() {
         return;
     }
 
-    // Get the filename and output format
-    let filename = matches.value_of("output");
-    let format   = matches.value_of("format").unwrap();
-
-    // Writing to PDF requires a filename
-    if format == "pdf" && filename.is_none() {
-        eprintln!("Need an output file name when writing to PDF");
-        return;
-    }
-
     // Number of t addresses to generate
     let t_addresses = matches.value_of("t_addresses").unwrap().parse::<u32>().unwrap();    
 
