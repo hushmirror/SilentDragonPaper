@@ -64,7 +64,6 @@ FLAGS:
     -h, --help       Prints help information
     -n, --nohd       Don't reuse HD keys. Normally, hushpaperwallet will use the same HD key to derive multiple
                      addresses. This flag will use a new seed for each address
-        --testnet    Generate Testnet addresses
     -V, --version    Prints version information
 
 OPTIONS:
