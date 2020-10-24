@@ -58,7 +58,7 @@ pub struct CoinParams {
 pub fn params() -> CoinParams {
         CoinParams {
             taddress_version : [0x1C, 0xB8],
-            tsecret_prefix   : [0x80],
+            tsecret_prefix   : [0xBC],
             zaddress_prefix  : "zs".to_string(),
             zsecret_prefix   : "secret-extended-key-main".to_string(),
             zviewkey_prefix  : "zviews".to_string(),
