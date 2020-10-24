@@ -37,7 +37,7 @@ fn main() {
                 .help("Provide additional entropy to the random number generator. Any random string, containing 32-64 characters"))
         .arg(Arg::with_name("vanity_prefix")
                 .long("vanity")
-                .help("Generate a vanity address with the given prefix")
+                .help("Generate a vanity address with the given prefix. Note that ['b', 'i', 'o', '1'] are not allowed in addresses.")
                 .takes_value(true))
         .arg(Arg::with_name("threads")
                 .long("threads")
