@@ -189,7 +189,7 @@ fn add_pk_to_page(current_layer: &PdfLayerReference, font: &IndirectFontRef, fon
     }
 
     // Add the address a second time below the private key
-    let title = if is_taddr {"T Address"} else {"HUSH Address"};
+    let title = if is_taddr {"HUSH t-address"} else {"HUSH z-address"};
     current_layer.use_text(title, 12, Mm(10.0), Mm(ypos-10.0), &font_bold);    
     let strs = split_to_max(&address, 39, 39);  // No spaces, so user can copy the address
     for i in 0..strs.len() {
