@@ -47,7 +47,7 @@ fn main() {
         .arg(Arg::with_name("t_addresses")
                 .short("t")
                 .long("taddrs")
-                .help("Numbe rof T addresses to generate")
+                .help("Number of t-addresses to generate")
                 .takes_value(true)
                 .default_value("0")
                 .validator(|i:String| match i.parse::<i32>() {
@@ -57,7 +57,7 @@ fn main() {
         .arg(Arg::with_name("z_addresses")
                 .short("z")
                 .long("zaddrs")
-                .help("Number of Z addresses (Sapling) to generate")
+                .help("Number of z-addresses (Sapling) to generate")
                 .takes_value(true)
                 .default_value("1")                
                 .validator(|i:String| match i.parse::<i32>() {
@@ -86,19 +86,19 @@ fn main() {
 
     let addresses = if !matches.value_of("vanity_prefix").is_none() {
         if z_addresses != 1 {
-            eprintln!("Can only generate 1 zaddress in vanity mode. You specified {}", z_addresses);
+            eprintln!("Can only generate 1 z-address in vanity mode. You specified {}", z_addresses);
             return;
         }
 
         if t_addresses != 0 {
-            eprintln!("Can't generate vanity t-addressses yet");
+            eprintln!("Can't generate vanity t-addresses yet");
             return;
         }
 
         let num_threads = matches.value_of("threads").unwrap().parse::<u32>().unwrap();
 
         let prefix = matches.value_of("vanity_prefix").unwrap().to_string();
-        println!("Generating address starting with \"{}\"", prefix);
+        println!("Generating z-address starting with \"{}\"...", prefix);
         let addresses = match generate_vanity_wallet(num_threads, prefix) {
             Ok(w) => w,
             Err(e) => {
@@ -126,7 +126,7 @@ fn main() {
             entropy.extend(matches.value_of("entropy").unwrap().as_bytes());
         }
 
-        print!("Generating {} Sapling addresses and {} Transparent addresses...", z_addresses, t_addresses);
+        print!("Generating {} z-addresses and {} t-addresses...", z_addresses, t_addresses);
         io::stdout().flush().ok();
         let addresses = generate_wallet(nohd, z_addresses, t_addresses, &entropy); 
         println!("[OK]");

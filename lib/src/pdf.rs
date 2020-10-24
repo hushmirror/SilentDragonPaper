@@ -156,7 +156,7 @@ fn add_address_to_page(current_layer: &PdfLayerReference, font: &IndirectFontRef
 
     //         page_height  top_margin  vertical_padding  position               
     let ypos = 297.0        - 5.0       - 77.0            - (140.0 * pos as f64);
-    let title = if is_taddr {"T Address"} else {"HUSH Address"};
+    let title = if is_taddr {"HUSH t-address"} else {"HUSH z-address"};
 
     add_address_at(current_layer, font, font_bold, title, address, &scaledimg, finalsize, ypos);
 }
