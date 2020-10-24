@@ -115,7 +115,8 @@ fn main() {
         // If the user hasn't specified any, read from the stdin
         if matches.value_of("entropy").is_none() {
             // Read from stdin
-            println!("Provide additional entropy for generating random numbers. Type in a string of random characters, press [ENTER] when done");
+            println!("Provide additional entropy for generating random numbers.
+Type in a string of random characters, press [ENTER] when done.");
             let mut buffer = String::new();
             let stdin = io::stdin();
             stdin.lock().read_line(&mut buffer).unwrap();
