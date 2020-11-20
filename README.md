@@ -9,7 +9,7 @@ You can run it on an air-gapped computer to generate your shielded z-addresses, 
 ![screenshot](hushpaperwallet.png?raw=true)
 
 # Download
-hushpaperwallet is available as pre-built binaries from our [release page](https://github.com/MyHush/hushpaperwallet/releases). Download the zip file for your platform, extract it and run the `./hushpaperwallet` binary. 
+hushpaperwallet is available as pre-built binaries from our [release page](https://git.hush.is/hush/hushpaperwallet/releases). Download the zip file for your platform, extract it and run the `./hushpaperwallet` binary. 
 
 # Generating wallets
 To generate a Hush paper wallet, simply run `./hushpaperwallet`
@@ -38,7 +38,7 @@ hushpaperwallet is built with rust. To compile from source, you [install Rust](h
 Checkout the hushpaperwallet repository and build the CLI
 
 ```
-git clone https://github.com/MyHush/hushpaperwallet.git
+git clone https://git.hush.is/hush/hushpaperwallet
 cd hushpaperwallet/cli
 cargo build --release
 ```
