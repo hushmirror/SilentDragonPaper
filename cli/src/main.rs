@@ -10,7 +10,7 @@ use std::io;
 use std::io::prelude::*;
 
 fn main() { 
-    let matches = App::new("hushpaperwaller")
+    let matches = App::new("SilentDragonPaper")
        .version(version::version())
        .about("A command line Hush paper wallet generator")
         .arg(Arg::with_name("format")
@@ -24,7 +24,7 @@ fn main() {
         .arg(Arg::with_name("nohd")
                 .short("n")
                 .long("nohd")
-                .help("Don't reuse HD keys. Normally, hushpaperwallet will use the same HD key to derive multiple addresses. This flag will use a new seed for each address"))
+                .help("Don't reuse HD keys. Normally, SilentDragonPaper will use the same HD key to derive multiple addresses. This flag will use a new seed for each address"))
         .arg(Arg::with_name("output")
                 .short("o")
                 .long("output")
