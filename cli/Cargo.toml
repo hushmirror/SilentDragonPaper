@@ -1,6 +1,6 @@
 [package]
-name = "hushpaperwallet"
-version = "0.1.2"
+name = "SilentDragonPaper"
+version = "0.2.0"
 authors = [
 	"ZecWallet",
     "The Hush developers"
