@@ -9,6 +9,6 @@ edition = "2018"
     
 [dependencies]
 clap = "2.33.0"
-hushpaperlib = { path = "../lib" }
+silentdragonpaper = { path = "../lib" }
 json = "0.11.14"
 printpdf = "0.3.2"

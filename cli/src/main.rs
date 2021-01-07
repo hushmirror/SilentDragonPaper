@@ -1,11 +1,11 @@
 extern crate clap;
-extern crate hushpaperlib;
+extern crate silentdragonpaperlib;
 
 mod version;
 
 use clap::{Arg, App};
-use hushpaperlib::paper::*;
-use hushpaperlib::pdf;
+use silentdragonpaperlib::paper::*;
+use silentdragonpaperlib::pdf;
 use std::io;
 use std::io::prelude::*;
 

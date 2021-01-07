@@ -1,13 +1,13 @@
+// Copyright (c) 2016-2020 The Hush developers
+// Distributed under the GPLv3 software license, see the accompanying
+// file COPYING or https://www.gnu.org/licenses/gpl-3.0.en.html
 #include <cstring>
-
 #include "precompiled.h"
-
 #include "mainwindow.h"
 #include "version.h"
 #include "ui_mainwindow.h"
 #include "ui_wallet.h"
 #include "ui_about.h"
-
 #include "hushpaperrust.h"
 
 void SaveRestore(QDialog* d) {
@@ -33,9 +33,7 @@ QString SplitIntoLines(QString s, int maxlen) {
     return ans.join("\n");
 }
 
-/**
- * Add a wallet (address + pk) section to the given vertical layout
- */
+// Add a wallet (address + pk) section to the given vertical layout
 void AddWallet(QString address, QString pk, QWidget* scroll) {
     Ui_WalletWidget w;
     auto g1 = new QGroupBox(scroll);
@@ -172,7 +170,7 @@ MainWindow::MainWindow(QWidget *parent) :
 
     // Help site
     QObject::connect(ui->actionHelp_site, &QAction::triggered, [=]() {
-        QDesktopServices::openUrl(QUrl("https://docs.hushwallet.co/paper")); 
+        QDesktopServices::openUrl(QUrl("https://faq.hush.is/sdp"));
     });
 
     // About button
@@ -180,7 +178,7 @@ MainWindow::MainWindow(QWidget *parent) :
         QDialog ad(this);
         Ui_AboutDialog d;
         d.setupUi(&ad);
-        d.lblVersion->setText(QString("hushpaperwallet ") + APP_VERSION + "(" + APP_BUILD_DATE + ")");
+        d.lblVersion->setText(QString("SilentDragonPaper ") + APP_VERSION + "(" + APP_BUILD_DATE + ")");
         SaveRestore(&ad);
 
         ad.exec();
