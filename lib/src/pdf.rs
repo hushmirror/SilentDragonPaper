@@ -16,7 +16,7 @@ use printpdf::*;
  * Save the list of wallets (address + private keys) to the given PDF file name.
  */
 pub fn save_to_pdf(addresses: &str, filename: &str) -> Result<(), String> {
-    let (doc, page1, layer1) = PdfDocument::new("Hush Paper Wallet", Mm(210.0), Mm(297.0), "Layer 1");
+    let (doc, page1, layer1) = PdfDocument::new("SilentDragonPaper Wallet", Mm(210.0), Mm(297.0), "Layer 1");
 
     let font  = doc.add_builtin_font(BuiltinFont::Courier).unwrap();
     let font_bold = doc.add_builtin_font(BuiltinFont::CourierBold).unwrap();

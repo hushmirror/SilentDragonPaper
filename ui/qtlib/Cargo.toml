@@ -1,7 +1,7 @@
 [package]
 name = "qtlib"
 version = "0.1.0"
-authors = ["ZecWallet"]
+authors = ["The Hush Developers", "ZecWallet"]
 edition = "2018"
 
 [lib]

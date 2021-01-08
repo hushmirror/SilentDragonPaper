@@ -6,18 +6,18 @@ endif
 
 all: release
 
-winrelease: target/x86_64-pc-windows-gnu/release/zecpaperrust.lib
+winrelease: target/x86_64-pc-windows-gnu/release/silentdragonpaper.lib
 
-target/x86_64-pc-windows-gnu/release/zecpaperrust.lib: src/lib.rs Cargo.toml
+target/x86_64-pc-windows-gnu/release/silentdragonpaper.lib: src/lib.rs Cargo.toml
 	cargo build --lib --release --target x86_64-pc-windows-gnu
 
-release: target/release/zecpaperrust.$(EXT)
-debug: target/debug/zecpaperrust.$(EXT) 
+release: target/release/silentdragonpaper.$(EXT)
+debug: target/debug/silentdragonpaper.$(EXT) 
 
-target/release/zecpaperrust.$(EXT): src/lib.rs Cargo.toml
+target/release/silentdragonpaper.$(EXT): src/lib.rs Cargo.toml
 	cargo build --lib --release
 
-target/debug/zecpaperrust.$(EXT): src/lib.rs Cargo.toml
+target/debug/silentdragonpaper.$(EXT): src/lib.rs Cargo.toml
 	cargo build --lib
 
 clean:

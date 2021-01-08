@@ -43,7 +43,7 @@ pub fn double_sha256(payload: &[u8]) -> Vec<u8> {
     h2.to_vec()
 }
 
-/// Parameters used to generate addresses and private keys. Look in chainparams.cpp (in zcashd/src)
+/// Parameters used to generate addresses and private keys. Look in chainparams.cpp in hush3.git
 /// to get these values. 
 /// Usually these will be different for testnet and for mainnet.
 pub struct CoinParams {

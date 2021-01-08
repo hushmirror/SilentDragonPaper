@@ -29,30 +29,30 @@ if [ -z $APP_VERSION ]; then
     exit 1;
 fi
 
-cd /opt/hushpaperwallet/ui
+cd /opt/silentdragonpaper/ui
 source ~/.cargo/env
 
 # We need to run qmake before we run disclean
 /opt/Qt/5.11.2/static/bin/qmake papersapling.pro CONFIG+=release
 make distclean
-rm -rf   artifacts/linux-hushpaperwallet-v$APP_VERSION
-mkdir -p artifacts/linux-hushpaperwallet-v$APP_VERSION
+rm -rf   artifacts/linux-silentdragonpaper-v$APP_VERSION
+mkdir -p artifacts/linux-silentdragonpaper-v$APP_VERSION
 /opt/Qt/5.11.2/static/bin/qmake papersapling.pro CONFIG+=release
 make -j4
 
-strip hushpaperwalletui
-cp hushpaperwalletui artifacts/linux-hushpaperwallet-v$APP_VERSION
+strip silentdragonpaperui
+cp silentdragonpaperui artifacts/linux-silentdragonpaper-v$APP_VERSION
 
 # Run qmake before distclean 
 /opt/mxe/usr/bin/x86_64-w64-mingw32.static-qmake-qt5 papersapling.pro CONFIG+=release
 make distclean
-rm -rf   artifacts/Windows-hushpaperwallet-v$APP_VERSION
-mkdir -p artifacts/Windows-hushpaperwallet-v$APP_VERSION
+rm -rf   artifacts/Windows-silentdragonpaper-v$APP_VERSION
+mkdir -p artifacts/Windows-silentdragonpaper-v$APP_VERSION
 /opt/mxe/usr/bin/x86_64-w64-mingw32.static-qmake-qt5 papersapling.pro CONFIG+=release
 make -j4
 
-strip release/hushpaperwalletui.exe
-cp release/hushpaperwalletui.exe artifacts/Windows-hushpaperwallet-v$APP_VERSION
+strip release/silentdragonpaperui.exe
+cp release/silentdragonpaperui.exe artifacts/Windows-silentdragonpaper-v$APP_VERSION
 
 # Cleanup before exiting
 make distclean
