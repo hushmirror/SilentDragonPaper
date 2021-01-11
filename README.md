@@ -8,16 +8,48 @@ You can run it on an air-gapped computer to generate your shielded z-addresses, 
 
 ![screenshot](SilentDragonPaper.png?raw=true)
 
-# Download
-SilentDragonPaper is available as pre-built binaries from our [release page](https://git.hush.is/hush/SilentDragonPaper/releases). Download the zip file for your platform, extract it and run the `./SilentDragonPaper` binary. 
+## Download
 
-# Generating wallets
-To generate a Hush paper wallet, simply run `./SilentDragonPaper`
+### Binary installation
+SilentDragonPaper is available as pre-built binaries from our [release page](https://git.hush.is/hush/SilentDragonPaper/releases). Download the zip file for your platform, extract it and run the `./SilentDragonPaper` binary.
+
+### Source code installation
+If you decide to compile from source, then first use git to get the source code as follows:
+
+```
+git clone https://git.hush.is/hush/SilentDragonPaper
+```
+
+Then choose one of these two source compilation options to build the SilentDragonPaper CLI.
+
+#### Option 1: Compile using system installed rust
+SilentDragonPaper is built with rust. To compile from source, you [install Rust](https://www.rust-lang.org/tools/install).
+
+```
+cd SilentDragonPaper/cli
+cargo build --release
+```
+
+#### Option 2: Compile using "embedded" rust
+Here we do need a system installed rust to compile.
+
+```
+cd SilentDragonPaper/cli
+./build.sh
+```
+
+#### Compiled binary location
+The binary is available in the `target/release` folder.
+
+## Usage Instructions
+
+### Generating wallets
+To generate a Hush paper wallet, simply run `./SilentDragonPaper` or `./target/release/SilentDragonPaper` or `./cli/target/release/SilentDragonPaper` depending on method you used to install.
 
 You'll be asked to type some random characters that will add entropy to the random number generator. Run with `--help` to see all options
 
-## Saving as PDFs
-To generate a Hush paper wallet and save it as a PDF, run
+### Saving as PDFs
+To generate a Hush paper wallet and save it as a PDF, run:
 
 ```
 ./SilentDragonPaper -z 3 --format pdf sdp.pdf
@@ -25,25 +57,11 @@ To generate a Hush paper wallet and save it as a PDF, run
 
 This will generate 3 shielded z-addresses and their corresponding private keys, and save them in a PDF file called `sdp.pdf`
 
-## Vanity Addresses
+### Vanity Addresses
 
 You can generate a "vanity address" (that is, an address starting with a given prefix) by specifying a `--vanity` argument with the prefix you want. 
 
 Note that generating vanity addresses with a prefix longer than 4-5 characters is computationally expensive. You can run it on multiple CPUs on your computer by specifying the `--threads` option. 
-
-# Compiling from Source
-
-SilentDragonPaper is built with rust. To compile from source, you [install Rust](https://www.rust-lang.org/tools/install).
-
-Checkout the SilentDragonPaper repository and build the CLI
-
-```
-git clone https://git.hush.is/hush/SilentDragonPaper
-cd SilentDragonPaper/cli
-cargo build --release
-```
-
-The binary is available in the `target/release` folder.
 
 ## Ensuring Security
 
@@ -96,11 +114,11 @@ ARGS:
 
 Released under the GNU Public License Version 3 or later.
 
-Copyright (c) 2019-2020 The Hush Developers
+Copyright (c) 2019-2021 The Hush Developers
 Copyright (c) 2019 adityapk00
 
 ## License
 
 GPLv3 or later.
 
-See [LICENSE] file for details.
+See [LICENSE](LICENSE) file for details.

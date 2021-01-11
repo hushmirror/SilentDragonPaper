@@ -1,11 +1,11 @@
 extern crate clap;
-extern crate silentdragonpaperlib;
+extern crate silentdragonpaper;
 
 mod version;
 
 use clap::{Arg, App};
-use silentdragonpaperlib::paper::*;
-use silentdragonpaperlib::pdf;
+use silentdragonpaper::paper::*;
+use silentdragonpaper::pdf;
 use std::io;
 use std::io::prelude::*;
 
