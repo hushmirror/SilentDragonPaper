@@ -78,8 +78,8 @@ pub fn save_to_pdf(addresses: &str, filename: &str) -> Result<(), String> {
         current_layer.set_outline_thickness(2.0);
 
         // Set title
-        current_layer.use_text("Speak and Transact Freely", 32, Mm(19.0), Mm(277.0), &font_bold);
-        current_layer.use_text("Private Cryptocurrency and Messenger on Zero Knowledge Proof Encryption", 13, Mm(7.0), Mm(266.0), &font_bold);
+        current_layer.use_text("Speak and Transact Freely", 32f64, Mm(19.0), Mm(277.0), &font_bold);
+        current_layer.use_text("Private Cryptocurrency and Messenger on Zero Knowledge Proof Encryption", 13f64, Mm(7.0), Mm(266.0), &font_bold);
 
         // Draw lines
         current_layer.add_shape(line1);
@@ -144,7 +144,7 @@ fn qrcode_scaled(data: &str, scalefactor: usize) -> (Vec<u8>, usize) {
  * Add a footer at the bottom of the page
  */
 fn add_footer_to_page(current_layer: &PdfLayerReference, font: &IndirectFontRef, footer: &str) {
-    current_layer.use_text(footer, 10, Mm(5.0), Mm(5.0), &font);
+    current_layer.use_text(footer, 10f64, Mm(5.0), Mm(5.0), &font);
 }
 
 
@@ -163,11 +163,11 @@ fn add_address_to_page(current_layer: &PdfLayerReference, font: &IndirectFontRef
 
 fn add_address_at(current_layer: &PdfLayerReference, font: &IndirectFontRef, font_bold: &IndirectFontRef, title: &str, address: &str, qrcode: &Vec<u8>, finalsize: usize, ypos: f64) {
     add_qrcode_image_to_page(current_layer, qrcode, finalsize, Mm(10.0), Mm(ypos));
-    current_layer.use_text(title, 14, Mm(55.0), Mm(ypos+22.5), &font_bold);
+    current_layer.use_text(title, 14f64, Mm(55.0), Mm(ypos+22.5), &font_bold);
     
     let strs = split_to_max(&address, 39, 39);  // No spaces, so user can copy the address
     for i in 0..strs.len() {
-        current_layer.use_text(strs[i].clone(), 12, Mm(55.0), Mm(ypos+15.0-((i*5) as f64)), &font);
+        current_layer.use_text(strs[i].clone(), 12f64, Mm(55.0), Mm(ypos+15.0-((i*5) as f64)), &font);
     }
 }
 
@@ -182,23 +182,23 @@ fn add_pk_to_page(current_layer: &PdfLayerReference, font: &IndirectFontRef, fon
 
     add_qrcode_image_to_page(current_layer, &scaledimg, finalsize, Mm(145.0), Mm(ypos-17.5));
 
-    current_layer.use_text("Private Key", 14, Mm(10.0), Mm(ypos+37.5), &font_bold);
+    current_layer.use_text("Private Key", 14f64, Mm(10.0), Mm(ypos+37.5), &font_bold);
     let strs = split_to_max(&pk, 45, 45);   // No spaces, so user can copy the private key
     for i in 0..strs.len() {
-        current_layer.use_text(strs[i].clone(), 12, Mm(10.0), Mm(ypos+32.5-((i*5) as f64)), &font);
+        current_layer.use_text(strs[i].clone(), 12f64, Mm(10.0), Mm(ypos+32.5-((i*5) as f64)), &font);
     }
 
     // Add the address a second time below the private key
     let title = if is_taddr {"HUSH t-address"} else {"HUSH z-address"};
-    current_layer.use_text(title, 12, Mm(10.0), Mm(ypos-10.0), &font_bold);    
+    current_layer.use_text(title, 12f64, Mm(10.0), Mm(ypos-10.0), &font_bold);    
     let strs = split_to_max(&address, 39, 39);  // No spaces, so user can copy the address
     for i in 0..strs.len() {
-        current_layer.use_text(strs[i].clone(), 12, Mm(10.0), Mm(ypos-15.0-((i*5) as f64)), &font);
+        current_layer.use_text(strs[i].clone(), 12f64, Mm(10.0), Mm(ypos-15.0-((i*5) as f64)), &font);
     }
 
     // And add the seed too. 
     if !seed.is_empty() {
-        current_layer.use_text(format!("HDSeed: {}, Path: {}", seed, path).as_str(), 8, Mm(10.0), Mm(ypos-35.0), &font);
+        current_layer.use_text(format!("HDSeed: {}, Path: {}", seed, path).as_str(), 8f64, Mm(10.0), Mm(ypos-35.0), &font);
     }
 }
 
