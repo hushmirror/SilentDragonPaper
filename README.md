@@ -1,5 +1,20 @@
 # SilentDragonPaper
 
+<p align="left">
+    <a href="https://twitter.com/MyHushTeam">
+        <img src="https://img.shields.io/twitter/url?style=social&url=https%3A%2F%2Ftwitter.com%2Fmyhushteam"
+            alt="MyHushTeam's Twitter"></a>
+    <a href="https://twitter.com/intent/follow?screen_name=MyHushTeam">
+        <img src="https://img.shields.io/twitter/follow/MyHushTeam?style=social&logo=twitter"
+            alt="follow on Twitter"></a>
+    <a href="https://fosstodon.org/@myhushteam">
+        <img src="https://img.shields.io/badge/Mastodon-MyHushTeam-blue"
+            alt="follow on Mastodon"></a>
+    <a href="https://www.reddit.com/r/Myhush/">
+        <img src="https://img.shields.io/reddit/subreddit-subscribers/Myhush?style=social"
+            alt="MyHushTeam's Reddit"></a>
+</p>
+
 SilentDragonPaper is a paper wallet generator that can run completely offline.
 
 You can run it on an air-gapped computer to generate your shielded z-addresses, which will allow you to keep your keys completely offline.
@@ -110,11 +125,16 @@ ARGS:
     <output>    Name of output file.
 ```
 
+## Support
+
+For support join us on [Telegram Support](https://hush.is/telegram_support), or our [Main Telegram](https://hush.is/telegram) or tweet at [@MyHushTeam](https://twitter.com/MyHushTeam), or toot at our [Mastodon](https://fosstodon.org/@myhushteam), or [file an issue](https://git.hush.is/hush/SilentDragonPaper/issues).
+
 ## Copyright
 
-Released under the GNU Public License Version 3 or later.
+Released under the [GNU Public License Version 3](https://www.gnu.org/licenses/gpl-3.0.en.html) or later.
 
 Copyright (c) 2019-2021 The Hush Developers
+
 Copyright (c) 2019 adityapk00
 
 ## License
