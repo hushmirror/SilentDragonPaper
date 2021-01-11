@@ -46,7 +46,7 @@ cargo build --release
 ```
 
 #### Option 2: Compile using "embedded" rust
-Here we do need a system installed rust to compile.
+Here we do not need a system installed rust to compile. The build.sh script pulls Rust version 1.48 down for us and builds with it.
 
 ```
 cd SilentDragonPaper/cli
@@ -54,7 +54,7 @@ cd SilentDragonPaper/cli
 ```
 
 #### Compiled binary location
-The binary is available in the `target/release` folder.
+The completed binary is available in the `cli/target/release` folder.
 
 ## Usage Instructions
 
